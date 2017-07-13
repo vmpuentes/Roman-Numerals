@@ -10,10 +10,18 @@
 // }
 var convertToRoman = function(input){
   var romanNumerals = ["M", "D", "C", "L", "X", "V", "I"];
-  var decimals = [1000,500, 100, 50, 10, 5,1];
+  var decimals = [1000, 500, 100, 50, 10, 5, 1];
+  var romNum = "";
   if (input === 0 || input > 3999) {
     alert("that is not a roman numeral");
-    //break;
+  }else {
+    for (var i = 0; i < romanNumerals.length; i++) {
+      while (input >= decimals[i]) {
+        input -= decimals[i];
+        romNum += romanNumerals[i];
+      }
+    }
+    return romNum;
   }
 
 }
@@ -22,8 +30,10 @@ var convertToRoman = function(input){
 $(document).ready(function(){
   $("#decimal-to-roman").submit(function(event){
         event.preventDefault();
-        debugger;
+        //debugger;
         var decimal = $("#decimal").val();
-        convertToRoman(decimal);
+        var output = convertToRoman(decimal);
+        //alert(output);
+        $("#output-roman").text(output);
   });
 });
